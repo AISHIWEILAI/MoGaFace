@@ -1,8 +1,9 @@
 # MoGaFace: Momentum-Guided and Texture-Aware Gaussian Avatars for Consistent Facial Geometry [PRCV 2026]
 
-**[Project Page](https://mogaface.github.io/) | [Paper (arXiv)](https://arxiv.org/abs/2508.01218)**
-
-**Accepted by PRCV 2026.**
+<p align="center">
+  <a href="https://mogaface.github.io/">Project Page</a> |
+  <a href="https://arxiv.org/abs/2508.01218">Paper (arXiv)</a>
+</p>
 
 ---
 
