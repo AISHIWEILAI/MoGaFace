@@ -4,13 +4,6 @@
 
 **Accepted by PRCV 2026.**
 
-Existing 3D head avatar methods often rely on a two-stage pipeline: tracked FLAME meshes followed by Gaussian rendering. Misalignment between the estimated mesh and target images can hurt rendering quality and fine visual details. **MoGaFace** continuously refines facial geometry and texture attributes during Gaussian rendering via:
-
-- **MGCG** (*Momentum-Guided Consistent Geometry*) — momentum-updated expression bank and expression-aware correction for temporal / multi-view consistency (`mogface/mgcg.py`, `MGCGModule`).
-- **LTA** (*Latent Texture Attention*) — compact multi-view features encoded into head-aware representations and integrated into Gaussians for geometry-aware texture refinement (`mogface/lta.py`, `LatentTextureAttention`).
-
-This repository is the **official validation-inference release** for NeRSemble subjects **306** and **074**.
-
 ---
 
 ## Installation & Dependencies
@@ -20,7 +13,7 @@ This repository is the **official validation-inference release** for NeRSemble s
 Tested with **Python 3.8**, **PyTorch 2.4.1 + CUDA 12.1**. Environment setup follows common 3D Gaussian Splatting + PyTorch3D workflows (see `setup_env.sh`).
 
 ```bash
-git clone <this-repo> MoGaFace --recursive
+git clone https://github.com/AISHIWEILAI/MoGaFace.git --recursive
 cd MoGaFace
 
 # If already cloned without --recursive:
@@ -32,22 +25,6 @@ conda activate mogaface
 
 # One-shot setup (Tsinghua pip mirror + CUDA extensions)
 bash setup_env.sh
-```
-
-Or install manually:
-
-```bash
-pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 \
-  --index-url https://download.pytorch.org/whl/cu121
-pip install -r requirements.txt
-
-# CUDA extensions
-pip install -e submodules/simple-knn
-pip install -e submodules/diff-gaussian-rasterization
-pip install -e gridencoder
-
-# PyTorch3D (build from source if prebuilt wheels fail)
-pip install -e <path-to-pytorch3d-source>
 ```
 
 | Component | Version |
@@ -133,17 +110,13 @@ data/
 
 output/nersemble/
 ├── 306_20material_allviews_expemo/
-│   └── UNION20EMOEXP_306_1000k_selfdefinded_memory_flamebank_nomaskloss_fifteenMV_point/
 └── 074_20material_allviews_expemo/
-    └── UNION20EMOEXP_074_1000k_selfdefinded_memory_flamebank_nomaskloss_fifteenMV_point/
 ```
 
 | Subject | Data path (`-s`, resolved in `render.py`) | Model path (`-m`) |
 |---------|-------------------------------------------|-------------------|
-| 306 | `data/306_20material_all_views/UNION20_306_EMO1234EXP234589_v16_DS4_whiteBg_staticOffset_maskBelowLine` | `output/nersemble/306_20material_allviews_expemo/UNION20EMOEXP_306_1000k_selfdefinded_memory_flamebank_nomaskloss_fifteenMV_point` |
-| 074 | `data/074_20material_all_views/UNION20_074_EMO1234EXP234589_v16_DS4_whiteBg_staticOffset_maskBelowLine` | `output/nersemble/074_20material_allviews_expemo/UNION20EMOEXP_074_1000k_selfdefinded_memory_flamebank_nomaskloss_fifteenMV_point` |
-
-Inference iteration is read from `val_results.txt` (line marked with `#`).
+| 306 | `data/306_20material_all_views/UNION20_306_EMO1234EXP234589_v16_DS4_whiteBg_staticOffset_maskBelowLine` | `output/nersemble/306_20material_allviews_expemo` |
+| 074 | `data/074_20material_all_views/UNION20_074_EMO1234EXP234589_v16_DS4_whiteBg_staticOffset_maskBelowLine` | `output/nersemble/074_20material_allviews_expemo` |
 
 Replace `PLACEHOLDER_DATA` / `PLACEHOLDER_CKPT` and extract codes with the actual Baidu Netdisk links before publishing.
 
@@ -159,7 +132,7 @@ bash infer_val.sh
 
 ```bash
 python render.py \
-  -m output/nersemble/306_20material_allviews_expemo/UNION20EMOEXP_306_1000k_selfdefinded_memory_flamebank_nomaskloss_fifteenMV_point \
+  -m output/nersemble/306_20material_allviews_expemo \
   --hum_id 306 \
   --skip_train \
   --skip_test
