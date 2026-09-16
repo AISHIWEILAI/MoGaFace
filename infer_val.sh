@@ -15,7 +15,7 @@ cd "${PROJECT_ROOT}"
 for SUBJECT in "${SUBJECTS[@]}"; do
   echo "========== Running validation inference for subject ${SUBJECT} =========="
   "$PYTHON" render.py \
-    -m "${PROJECT_ROOT}/output/nersemble/${SUBJECT}_20material_allviews_expemo/UNION20EMOEXP_${SUBJECT}_1000k_selfdefinded_memory_flamebank_nomaskloss_fifteenMV_point" \
+    -m "${PROJECT_ROOT}/output/nersemble/${SUBJECT}_20material_allviews_expemo" \
     --hum_id "${SUBJECT}" \
     --skip_train \
     --skip_test

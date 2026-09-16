@@ -81,7 +81,6 @@ class OptimizationParams(ParamGroup):
         self.densify_until_iter = 600_000  # 15_000 (original)
         self.densify_grad_threshold = 0.0002
 
-        # GaussianAvatars
         self.flame_expr_lr = 1e-3
         self.flame_trans_lr = 1e-6
         self.flame_pose_lr = 1e-5

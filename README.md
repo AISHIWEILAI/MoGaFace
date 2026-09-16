@@ -192,5 +192,5 @@ We sincerely thank the authors of these projects for their contributions to the 
 
 By using this project, you agree to comply with all applicable laws and regulations.
 You must not use it to generate or disseminate harmful content.
-FLAME and third-party CUDA extensions are subject to their respective licenses ([FLAME license](https://flame.is.tue.mpg.de/modellicense.html); see `submodules/*/LICENSE.md`).
+FLAME and third-party CUDA extensions are subject to their respective licenses.
 The developers assume no responsibility for any direct, indirect, or consequential damages arising from the use or misuse of this software.
